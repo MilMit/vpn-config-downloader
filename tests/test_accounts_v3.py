@@ -61,7 +61,11 @@ class AccountsV3(unittest.TestCase):
             a=profile_dir('surfshark',base=Path(td),create=True)
             b=profile_dir('proton',base=Path(td),create=True)
             self.assertNotEqual(a,b)
-            self.assertEqual(a.stat().st_mode & 0o777,0o700)
+            self.assertTrue(a.is_dir())
+            self.assertTrue(b.is_dir())
+            # Windows profile permissions use ACLs, not POSIX mode bits.
+            if os.name != 'nt':
+                self.assertEqual(a.stat().st_mode & 0o777,0o700)
             with self.assertRaises(ValueError):profile_dir('../other',base=Path(td),create=True)
 
     def test_persistent_login_does_not_capture_password_and_saves_profile(self):
@@ -129,7 +133,8 @@ class AccountsV3(unittest.TestCase):
             self.assertIn('auth-user-pass openvpn_auth.txt',p.read_text())
             secret=p.parent/'openvpn_auth.txt'
             self.assertEqual(secret.read_text(),'service-user\nservice-password\n')
-            self.assertEqual(secret.stat().st_mode & 0o777,0o600)
+            if os.name != 'nt':
+                self.assertEqual(secret.stat().st_mode & 0o777,0o600)
             archive=export_archive(root)
             self.assertTrue(archive.is_file())
 

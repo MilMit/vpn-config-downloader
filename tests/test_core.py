@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import tempfile
 import unittest
 import zipfile
@@ -56,7 +57,8 @@ class CoreTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as p:
             target=Path(p)/'private.conf';safe_store(target,WG)
             self.assertTrue(target.read_text().startswith('[Interface]'))
-            self.assertEqual(target.stat().st_mode & 0o777,0o600)
+            if os.name != 'nt':
+                self.assertEqual(target.stat().st_mode & 0o777,0o600)
 
 if __name__=='__main__':unittest.main()
 
