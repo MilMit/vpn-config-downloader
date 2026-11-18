@@ -1,0 +1,42 @@
+{
+  "application": "VPN Config Downloader",
+  "version": "4.1.0",
+  "date": "2026-11-18",
+  "delivered": [
+    "Plugin-based ProviderRegistry supporting Windscribe, Surfshark, Proton VPN, and dynamic third-party provider plugins",
+    "Standardized 6-protocol capability matrix across all providers (Supported, Requires Manual Action, Experimental, Unsupported)",
+    "Live public server catalog discovery for Windscribe (202 locations) and Surfshark (142 clusters) with country/city filtering",
+    "Updated Surfshark official bulk OpenVPN archive endpoints (my.surfshark.com & api.surfshark.com prioritized over legacy Zendesk)",
+    "Professional concurrent DownloadManager with adjustable concurrency (1-8), instant pause/resume/cancel, exponential backoff + HTTP 429 cooldown, persistent checkpoint.json, SHA-256 deduplication, failed-only retry, and atomic post-write verification",
+    "Multi-account registry with isolated Chromium profiles, non-secret session check status persistence, plan hints, and OS-keyring storage for OpenVPN credentials and WireGuard X25519 keys",
+    "Cross-platform pure-Python X25519 WireGuard key derivation, key-match verification, and guided portal key registration",
+    "Three-stage Configuration Health Checker: Syntax Validation (including OpenVPN CA/TLS checks & WireGuard key checks), Endpoint Reachability (DNS/TCP), and optional explicitly-consented non-routing VPN Connection Verification (Not Tested by default)",
+    "Hardened security layer: WinZip AES-256 ZIP encryption with real decryption verification, ZIP-bomb (ratio + expanded size + entry count) and Unix/Windows path traversal defenses, and centralized secret redaction",
+    "Modular 10-page PySide6 GUI (Dashboard, Providers, Accounts, Servers, Protocols, Downloads, Validator, Exports, Logs, Settings) with live Dark/Light Mode switching",
+    "Authorized-only Automatic Scheduler (Surfshark public OpenVPN ZIP) with SHA-256 change detection, duplicate prevention, and persistent run history",
+    "Extended headless CLI (--list-providers, --validate, --check-reachability, --verify-zip, --concurrency) and GitHub Actions Windows/Linux build workflow"
+  ],
+  "verified_in_environment": {
+    "unit_and_integration_tests_passed": 77,
+    "unit_and_integration_tests_failed": 0,
+    "unit_and_integration_tests_skipped": 0,
+    "python_compileall": true,
+    "pyside6_gui_execution_offscreen": true,
+    "aes_zip_decryption_runtime": true,
+    "live_windscribe_public_server_catalog": true,
+    "live_surfshark_public_clusters_and_openvpn_zip": true,
+    "live_surfshark_dns_tcp_reachability_probe": true,
+    "linux_elf_build_and_smoke_launch": true,
+    "actual_authenticated_provider_account_downloads": false,
+    "actual_vpn_tunnel_connection": false,
+    "windows_exe_build": false
+  },
+  "unverified_and_limitations": [
+    "Authenticated account login, 2FA, and account-gated downloads (Windscribe Pro generator, Surfshark WireGuard, Proton OpenVPN/WireGuard) require real user credentials and remain Unverified.",
+    "Real end-to-end VPN tunnel connectivity (handshake + routed traffic) requires valid paid service credentials and an isolated test environment and remains Unverified.",
+    "Windows 10/11 native .exe build cannot be cross-compiled on Linux by PyInstaller; run scripts\\build_windows.bat on Windows or trigger .github/workflows/test-and-build.yml.",
+    "The existing Linux executable in dist/MultiVPNConfigManager/ predates the product rename. Rebuild with scripts/build_linux.sh --skip-browser-bundle to produce dist/VPNConfigDownloader/, or omit --skip-browser-bundle to embed Playwright Chromium.",
+    "Proton VPN restricts unauthenticated server catalog scraping; server selection requires manual portal interaction.",
+    "Windscribe IKEv2, Stealth, and WStunnel remain Experimental and depend on user-supplied verified endpoints and external clients."
+  ]
+}

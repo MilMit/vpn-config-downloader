@@ -1,0 +1,35 @@
+# Python environment & caches
+.venv/
+.venv-build/
+env/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+
+# PyInstaller & build outputs
+build/MultiVPNConfigManager/
+build/VPNConfigDownloader/
+build/spec/
+dist/
+*.spec
+.browser-bundle/
+
+# Local state & archives
+.env
+.local/
+output/
+*.zip
+!fixtures/*.zip
+*.log
+
+# Editors & IDEs
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
