@@ -15,6 +15,7 @@ build/MultiVPNConfigManager/
 build/VPNConfigDownloader/
 build/spec/
 dist/
+release/
 *.spec
 .browser-bundle/
 

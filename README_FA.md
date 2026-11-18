@@ -10,6 +10,12 @@
 
 ## ۱. پیش‌نیازها و نصب
 
+### دریافت فایل اجرایی آماده
+
+نسخهٔ ویندوز (`.zip`) یا لینوکس (`.tar.gz`) را از [GitHub Releases](https://github.com/MilMit/vpn-config-downloader/releases) دانلود و کامل استخراج کنید. در ویندوز `VPNConfigDownloader.exe` و در لینوکس `./VPNConfigDownloader/VPNConfigDownloader` را اجرا کنید. پایتون و Chromium در بسته هستند؛ لینوکس ممکن است به کتابخانه‌های سیستمی Qt/Chromium نیاز داشته باشد. پوشهٔ `_internal` باید کنار فایل اجرایی بماند.
+
+دستورهای زیر برای اجرای برنامه از سورس هستند.
+
 ### Ubuntu / Debian Linux
 
 ```bash

@@ -50,6 +50,12 @@ Designed for **Ubuntu Linux** and **Windows 10/11**.
 
 ## Installation & Getting Started
 
+### Download a native application
+
+Download the Windows ZIP or Linux TAR.GZ from [GitHub Releases](https://github.com/MilMit/vpn-config-downloader/releases). Extract the entire package and launch `VPNConfigDownloader.exe` on Windows or `./VPNConfigDownloader/VPNConfigDownloader` on Linux. Python and Chromium are included; Linux may still require system Qt/Chromium libraries. Keep the `_internal` directory beside the executable.
+
+The following instructions are for running from source.
+
 ### Prerequisites
 - Python 3.11 or newer (Python 3.12 recommended).
 - Git.
@@ -129,6 +135,8 @@ PyInstaller build orchestration resides in `build/build.py` with 1-click wrapper
 - **CI/CD**: Pre-configured GitHub Actions workflow in `.github/workflows/test-and-build.yml` tests and packages artifacts on both platforms automatically.
 
 Build output: `dist/VPNConfigDownloader/` (`VPNConfigDownloader` on Linux, `VPNConfigDownloader.exe` on Windows).
+
+To create a distributable archive after a browser-bundled build, run `python build/package.py --version v4.1.0-beta.1`. Packages are written to `release/`. Pushing a `v*` tag runs both native builds and publishes a beta GitHub Release only after all checks pass.
 
 Existing settings, account profiles, OS Keyring entries and the default `MultiVPN-Configs` output folder retain their storage names for compatibility with earlier versions.
 
